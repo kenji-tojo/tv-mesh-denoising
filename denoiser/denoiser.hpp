@@ -90,6 +90,7 @@ public:
         N.setZero(inN.rows(), 3);
 
         for (int iter = 0; iter < n_iter; ++iter) {
+            std::cout << "iter #" << iter+1 << "/" << n_iter << std::endl;
             // N-sub problem
             solve_for_N(lambda, P, inN, N);
 
