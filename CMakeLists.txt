@@ -7,5 +7,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 add_executable(denoiser main.cpp)
-target_include_directories(denoiser PRIVATE)
+target_include_directories(denoiser PRIVATE ext)
 target_link_libraries(denoiser PRIVATE Eigen3::Eigen)
