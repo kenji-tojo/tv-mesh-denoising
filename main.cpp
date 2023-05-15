@@ -13,6 +13,7 @@ int main(int argc, char *argv[]) {
     cxxopts::Options options("TV mesh denoiser", "Mesh denoising via TV regularization on normals");
     options.add_options()
             ("obj", "obj file containing the input mesh", cxxopts::value<std::string>())
+             ("a,alpha", "denoising strength", cxxopts::value<double>()->default_value("100.0"))
             ;
     options.parse_positional({"obj"});
     auto args = options.parse(argc, argv);
@@ -26,7 +27,7 @@ int main(int argc, char *argv[]) {
     Eigen::MatrixXd iniN, N;
     igl::per_face_normals(V, F, iniN);
     auto denoiser = tvd::Denoiser<double>(V, F);
-    denoiser.alpha = 100.0;
+    denoiser.alpha = args["alpha"].as<double>();
     denoiser.denoise(iniN, N, /*n_iter=*/70);
     tvd::Denoiser<double>::recover_positions(F, N, V);
 
