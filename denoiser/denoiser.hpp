@@ -56,7 +56,6 @@ public:
 
         eLenMat.resize(uE.rows(), uE.rows());
         eLenMat.setZero();
-        double sumL = 0.;
         for (int jj = 0; jj < uE.rows(); ++jj) {
             const auto p0 = V.row(uE(jj,0));
             const auto p1 = V.row(uE(jj,1));
@@ -66,7 +65,6 @@ public:
 
         Eigen::Vector<typename DerivedV::Scalar, Eigen::Dynamic> A;
         igl::doublearea(V, F, A);
-        const auto totA = A.sum();
         areaMat.resize(F.rows(), F.rows());
         areaMat.setZero();
         for (int kk = 0; kk < F.rows(); ++kk) {
